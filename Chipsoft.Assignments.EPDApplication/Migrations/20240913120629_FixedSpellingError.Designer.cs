@@ -3,6 +3,7 @@ using System;
 using Chipsoft.Assignments.EPDApplication.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chipsoft.Assignments.EPDApplication.Migrations
 {
     [DbContext(typeof(EPDDbContext))]
-    partial class EPDDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240913120629_FixedSpellingError")]
+    partial class FixedSpellingError
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -81,7 +84,7 @@ namespace Chipsoft.Assignments.EPDApplication.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateOnly>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")

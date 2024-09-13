@@ -8,6 +8,8 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
 
         builder.HasIndex(v => v.NationalRegistryNumber).IsUnique();
 
+        builder.Navigation(v => v.Address).AutoInclude();
+
         builder.HasOne(v => v.Address).WithMany();
     }
 }

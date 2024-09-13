@@ -1,16 +1,30 @@
-﻿using Chipsoft.Assignments.EPDApplication.Contexts;
-
-namespace Chipsoft.Assignments.EPDConsole
+﻿namespace Chipsoft.Assignments.EPDConsole
 {
     public class Program
     {
         //Don't create EF migrations, use the reset db option
         //This deletes and recreates the db, this makes sure all tables exist
 
+        private static readonly EPDDbContext DbContext = new();
+
+        private static readonly IPatientService PatientService = new PatientService(DbContext);
+
+        private static readonly IInputService InputService = new InputService();
+        private static readonly IPrintService PrintService = new PrintService();
+
         private static void AddPatient()
         {
-            //Do action
-            //return to show menu again.
+            try
+            {
+                var patient = InputService.ReadPatientDTO();
+                PatientService.AddPatient(patient);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            InputHelper.WaitToContinue();
         }
 
         private static void ShowAppointment()
@@ -31,6 +45,20 @@ namespace Chipsoft.Assignments.EPDConsole
 
         private static void DeletePatient()
         {
+            try
+            {
+                var patients = PatientService.GetAllPatients();
+                PrintService.PrintPatients(patients);
+
+                var patientId = InputHelper.ReadInt("Patiënt Id");
+                PatientService.DeletePatient(patientId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            InputHelper.WaitToContinue();
         }
 
 
@@ -85,9 +113,8 @@ namespace Chipsoft.Assignments.EPDConsole
                     case 7:
                         return false;
                     case 8:
-                        EPDDbContext dbContext = new EPDDbContext();
-                        dbContext.Database.EnsureDeleted();
-                        dbContext.Database.EnsureCreated();
+                        DbContext.Database.EnsureDeleted();
+                        DbContext.Database.EnsureCreated();
                         return true;
                     default:
                         return true;

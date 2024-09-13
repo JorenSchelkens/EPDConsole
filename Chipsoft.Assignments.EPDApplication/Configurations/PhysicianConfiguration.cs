@@ -6,6 +6,8 @@ public class PhysicianConfiguration : IEntityTypeConfiguration<Physician>
     {
         builder.HasKey(v => v.Id);
 
+        builder.Navigation(v => v.Address).AutoInclude();
+
         builder.HasOne(v => v.Address).WithMany();
     }
 }

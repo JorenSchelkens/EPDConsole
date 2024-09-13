@@ -2,3 +2,8 @@
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Chipsoft.Assignments.EPDApplication.Models;
 global using Chipsoft.Assignments.EPDApplication.Configurations;
+global using Chipsoft.Assignments.EPDApplication.DTOs;
+global using Chipsoft.Assignments.EPDApplication.Interfaces;
+global using Chipsoft.Assignments.EPDApplication.Contexts;
+global using Chipsoft.Assignments.EPDApplication.Exceptions;
+global using Chipsoft.Assignments.EPDApplication.Mappers;
