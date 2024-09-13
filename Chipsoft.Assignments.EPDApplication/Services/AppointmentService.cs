@@ -14,12 +14,12 @@ public class AppointmentService(EPDDbContext dbContext) : IAppointmentService
 
         if (!IsPatientAvailable(patient, appointmentDTO.DateAndTime))
         {
-            throw new AppointmentOverlapException($"{patient.FirstName} {patient.LastName}");
+            throw new AppointmentOverlapException(patient.FullName);
         }
 
         if (!IsPhysicianAvailable(physician, appointmentDTO.DateAndTime))
         {
-            throw new AppointmentOverlapException($"{physician.FirstName} {physician.LastName}");
+            throw new AppointmentOverlapException(physician.FullName);
         }
 
         if (appointmentDTO.DateAndTime < DateTime.Now)

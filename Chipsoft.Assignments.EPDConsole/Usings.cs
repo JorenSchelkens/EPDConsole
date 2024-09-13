@@ -3,3 +3,4 @@ global using Chipsoft.Assignments.EPDApplication.DTOs;
 global using Chipsoft.Assignments.EPDApplication.Interfaces;
 global using Chipsoft.Assignments.EPDApplication.Services;
 global using Chipsoft.Assignments.EPDConsole.Helpers;
+global using Chipsoft.Assignments.EPDConsole.Interfaces;

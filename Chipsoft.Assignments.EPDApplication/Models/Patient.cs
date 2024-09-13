@@ -12,4 +12,6 @@ public class Patient
     public required Address Address { get; set; }
 
     public int AddressId { get; set; }
+
+    public string FullName => $"{this.FirstName} {this.LastName}";
 }

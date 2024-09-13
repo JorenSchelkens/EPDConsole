@@ -1,4 +1,4 @@
-﻿namespace Chipsoft.Assignments.EPDConsole;
+﻿namespace Chipsoft.Assignments.EPDConsole.Interfaces;
 
 public interface IPrintService
 {

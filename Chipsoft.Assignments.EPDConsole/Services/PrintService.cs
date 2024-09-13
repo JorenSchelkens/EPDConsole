@@ -7,9 +7,8 @@ public class PrintService : IPrintService
         Console.WriteLine();
         foreach (PatientDTO patient in patients)
         {
-            Console.WriteLine($"{patient.Id}: {patient.FirstName} {patient.LastName}");
+            Console.WriteLine($"{patient.Id}: {patient.FullName}");
         }
-        Console.WriteLine();
     }
 
     public void PrintPhysicians(IEnumerable<PhysicianDTO> physicians)
@@ -17,9 +16,8 @@ public class PrintService : IPrintService
         Console.WriteLine();
         foreach (PhysicianDTO physician in physicians)
         {
-            Console.WriteLine($"{physician.Id}: {physician.FirstName} {physician.LastName}");
+            Console.WriteLine($"{physician.Id}: {physician.FullName}");
         }
-        Console.WriteLine();
     }
 
     public void PrintAppointments(IEnumerable<AppointmentDTO> appointments)
@@ -30,6 +28,5 @@ public class PrintService : IPrintService
             var dateTimeFormatted = appointment.DateAndTime.ToString("dd/MM/yyyy HH:mm");
             Console.WriteLine($"Afspraak om {dateTimeFormatted} tussen {appointment.Patient.FullName} en {appointment.Physician.FullName}");
         }
-        Console.WriteLine();
     }
 }
