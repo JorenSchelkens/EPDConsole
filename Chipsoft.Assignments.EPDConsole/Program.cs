@@ -9,9 +9,10 @@
 
         private static readonly IPatientService PatientService = new PatientService(DbContext);
         private static readonly IPhysicianService PhysicianService = new PhysicianService(DbContext);
+        private static readonly IAppointmentService AppointmentService = new AppointmentService(DbContext);
 
-        private static readonly IInputService InputService = new InputService();
         private static readonly IPrintService PrintService = new PrintService();
+        private static readonly IInputService InputService = new InputService(PrintService);
 
         private static void AddPatient()
         {
@@ -30,10 +31,35 @@
 
         private static void ShowAppointment()
         {
+            try
+            {
+                var appointments = AppointmentService.GetAll();
+                PrintService.PrintAppointments(appointments);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            InputHelper.WaitToContinue();
         }
 
         private static void AddAppointment()
         {
+            try
+            {
+                var patients = PatientService.GetAll();
+                var physicians = PhysicianService.GetAll();
+
+                var appointment = InputService.ReadAppointmentDTO(patients, physicians);
+                AppointmentService.Add(appointment);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            InputHelper.WaitToContinue();
         }
 
         private static void DeletePhysician()

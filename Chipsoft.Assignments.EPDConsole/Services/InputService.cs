@@ -1,7 +1,9 @@
 ﻿namespace Chipsoft.Assignments.EPDConsole;
 
-public class InputService : IInputService
+public class InputService(IPrintService printService) : IInputService
 {
+    private readonly IPrintService _printService = printService;
+
     public AddPatientDTO ReadPatientDTO()
     {
         var firstName = InputHelper.ReadString("Voornaam");
@@ -23,6 +25,19 @@ public class InputService : IInputService
         var addressDTO = ReadAddress();
 
         return new AddPhysicianDTO(firstName, lastName, dateOfBirth, addressDTO);
+    }
+
+    public AddAppointmentDTO ReadAppointmentDTO(IEnumerable<PatientDTO> patients, IEnumerable<PhysicianDTO> physicians)
+    {
+        _printService.PrintPatients(patients);
+        var patientId = InputHelper.ReadInt("Patiënt Id");
+
+        _printService.PrintPhysicians(physicians);
+        var physicianId = InputHelper.ReadInt("Arts Id");
+
+        var dateAndTime = InputHelper.ReadDateTime("Datum en tijd van afspraak");
+
+        return new AddAppointmentDTO(patientId, physicianId, dateAndTime);
     }
 
     private static AddressDTO ReadAddress()

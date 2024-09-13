@@ -2,9 +2,9 @@
 
 public interface IPhysicianService
 {
-    void Add(AddPhysicianDTO patientDTO);
+    void Add(AddPhysicianDTO physicianDTO);
 
-    void Delete(int patientId);
+    void Delete(int physicianId);
 
     IEnumerable<PhysicianDTO> GetAll();
 }

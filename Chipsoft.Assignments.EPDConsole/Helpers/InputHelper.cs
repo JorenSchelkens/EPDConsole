@@ -27,6 +27,18 @@ public static class InputHelper
         return result;
     }
 
+    public static DateTime ReadDateTime(string helperText)
+    {
+        DateTime result;
+
+        do
+        {
+            Console.Write($"{helperText} (dd/mm/yyyy hh:mm): ");
+        } while (!DateTime.TryParse(Console.ReadLine(), out result) && result == DateTime.MinValue);
+
+        return result;
+    }
+
     public static int ReadInt(string helperText)
     {
         int result;

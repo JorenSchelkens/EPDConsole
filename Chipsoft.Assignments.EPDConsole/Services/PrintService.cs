@@ -21,4 +21,15 @@ public class PrintService : IPrintService
         }
         Console.WriteLine();
     }
+
+    public void PrintAppointments(IEnumerable<AppointmentDTO> appointments)
+    {
+        Console.WriteLine();
+        foreach (AppointmentDTO appointment in appointments)
+        {
+            var dateTimeFormatted = appointment.DateAndTime.ToString("dd/MM/yyyy HH:mm");
+            Console.WriteLine($"Afspraak om {dateTimeFormatted} tussen {appointment.Patient.FullName} en {appointment.Physician.FullName}");
+        }
+        Console.WriteLine();
+    }
 }
