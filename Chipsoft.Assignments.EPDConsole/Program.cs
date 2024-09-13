@@ -1,5 +1,4 @@
-﻿using Chipsoft.Assignments.EPDApplication;
-using Chipsoft.Assignments.EPDApplication.Contexts;
+﻿using Chipsoft.Assignments.EPDApplication.Contexts;
 
 namespace Chipsoft.Assignments.EPDConsole
 {
