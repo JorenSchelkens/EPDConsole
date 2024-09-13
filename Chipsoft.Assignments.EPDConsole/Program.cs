@@ -1,4 +1,7 @@
-﻿namespace Chipsoft.Assignments.EPDConsole
+﻿using Chipsoft.Assignments.EPDApplication;
+using Chipsoft.Assignments.EPDApplication.Contexts;
+
+namespace Chipsoft.Assignments.EPDConsole
 {
     public class Program
     {
