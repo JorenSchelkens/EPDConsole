@@ -15,6 +15,16 @@ public class InputService : IInputService
         return new AddPatientDTO(firstName, lastName, nationalRegistryNumber, email, phoneNumber, dateOfBirth, addressDTO);
     }
 
+    public AddPhysicianDTO ReadPhysicianDTO()
+    {
+        var firstName = InputHelper.ReadString("Voornaam");
+        var lastName = InputHelper.ReadString("Achternaam");
+        var dateOfBirth = InputHelper.ReadDateOnly("Geboortedatum");
+        var addressDTO = ReadAddress();
+
+        return new AddPhysicianDTO(firstName, lastName, dateOfBirth, addressDTO);
+    }
+
     private static AddressDTO ReadAddress()
     {
         var country = InputHelper.ReadString("Land");

@@ -1,14 +1,14 @@
 ﻿namespace Chipsoft.Assignments.EPDApplication.Services;
 
-public class PatientService(EPDDbContext dbContext) : IPatientService
+public class PhysicianService(EPDDbContext dbContext) : IPhysicianService
 {
     private readonly EPDDbContext _dbContext = dbContext;
 
-    public void Add(AddPatientDTO patientDTO)
+    public void Add(AddPhysicianDTO patientDTO)
     {
-        var patient = patientDTO.ToPatient();
+        var patient = patientDTO.ToPhysician();
 
-        _dbContext.Patients.Add(patient);
+        _dbContext.Physicians.Add(patient);
         var result = _dbContext.SaveChanges();
 
         if (result < 1)
@@ -19,10 +19,10 @@ public class PatientService(EPDDbContext dbContext) : IPatientService
 
     public void Delete(int patientId)
     {
-        var patient = _dbContext.Patients.FirstOrDefault(v => v.Id == patientId)
+        var patient = _dbContext.Physicians.FirstOrDefault(v => v.Id == patientId)
             ?? throw new NotFoundException(patientId, nameof(Delete));
 
-        _dbContext.Patients.Remove(patient);
+        _dbContext.Physicians.Remove(patient);
         var result = _dbContext.SaveChanges();
 
         if (result < 1)
@@ -31,5 +31,5 @@ public class PatientService(EPDDbContext dbContext) : IPatientService
         }
     }
 
-    public IEnumerable<PatientDTO> GetAll() => _dbContext.Patients.Select(v => v.ToDTO()).ToArray();
+    public IEnumerable<PhysicianDTO> GetAll() => _dbContext.Physicians.Select(v => v.ToDTO()).ToArray();
 }

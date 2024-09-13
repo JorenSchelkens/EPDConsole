@@ -8,6 +8,7 @@
         private static readonly EPDDbContext DbContext = new();
 
         private static readonly IPatientService PatientService = new PatientService(DbContext);
+        private static readonly IPhysicianService PhysicianService = new PhysicianService(DbContext);
 
         private static readonly IInputService InputService = new InputService();
         private static readonly IPrintService PrintService = new PrintService();
@@ -17,7 +18,7 @@
             try
             {
                 var patient = InputService.ReadPatientDTO();
-                PatientService.AddPatient(patient);
+                PatientService.Add(patient);
             }
             catch (Exception e)
             {
@@ -37,21 +38,46 @@
 
         private static void DeletePhysician()
         {
+            try
+            {
+                var physicians = PhysicianService.GetAll();
+                PrintService.PrintPhysicians(physicians);
+
+                var physicianId = InputHelper.ReadInt("Arts Id");
+                PhysicianService.Delete(physicianId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            InputHelper.WaitToContinue();
         }
 
         private static void AddPhysician()
         {
+            try
+            {
+                var physician = InputService.ReadPhysicianDTO();
+                PhysicianService.Add(physician);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            InputHelper.WaitToContinue();
         }
 
         private static void DeletePatient()
         {
             try
             {
-                var patients = PatientService.GetAllPatients();
+                var patients = PatientService.GetAll();
                 PrintService.PrintPatients(patients);
 
                 var patientId = InputHelper.ReadInt("Patiënt Id");
-                PatientService.DeletePatient(patientId);
+                PatientService.Delete(patientId);
             }
             catch (Exception e)
             {

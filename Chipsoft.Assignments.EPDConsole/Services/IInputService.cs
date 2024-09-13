@@ -3,4 +3,5 @@
 public interface IInputService
 {
     AddPatientDTO ReadPatientDTO();
+    AddPhysicianDTO ReadPhysicianDTO();
 }

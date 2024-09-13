@@ -2,9 +2,9 @@
 
 public interface IPatientService
 {
-    void AddPatient(AddPatientDTO patientDTO);
+    void Add(AddPatientDTO patientDTO);
 
-    void DeletePatient(int patientId);
+    void Delete(int patientId);
 
-    IEnumerable<PatientDTO> GetAllPatients();
+    IEnumerable<PatientDTO> GetAll();
 }

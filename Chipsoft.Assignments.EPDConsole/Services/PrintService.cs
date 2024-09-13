@@ -11,4 +11,14 @@ public class PrintService : IPrintService
         }
         Console.WriteLine();
     }
+
+    public void PrintPhysicians(IEnumerable<PhysicianDTO> physicians)
+    {
+        Console.WriteLine();
+        foreach (PhysicianDTO physician in physicians)
+        {
+            Console.WriteLine($"{physician.Id}: {physician.FirstName} {physician.LastName}");
+        }
+        Console.WriteLine();
+    }
 }
